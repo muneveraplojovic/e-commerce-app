@@ -67,9 +67,9 @@ const ArticleCard = ({
       <SimplifiedDiv style={styles.buttonHolder}>
         <PrimaryButton
           primary
-          borderRadius="3px"
-          padding="10px"
-          onClick={() => onClickButton({ article })}
+          borderRadius='3px'
+          padding='10px'
+          onClick={() => onClickButton(article)}
         >
           <ShoppingCartOutlined style={styles.shoppingCartIcon} />
           Add to cart

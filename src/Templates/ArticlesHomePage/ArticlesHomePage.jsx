@@ -65,15 +65,31 @@ export const articles = [
 const ArticlesHomePage = () => {
   //Postaviti funkcije koje ce izlistavati artikle
 
-  const { setItems } = useContext(CartContext);
+  const { items, setItems } = useContext(CartContext);
 
-  // function addArticleHandler(article) {
-  //   let existingIndex = items.findIndex((item) => item.id === article.id);
-  // }
- 
+  function addArticleHandler(article) {
+    let existingIndex = items.findIndex((item) => item.id === article.id);
+    console.log(existingIndex, article);
+    if (existingIndex >= 0) {
+      setItems(
+        items.map((item) => {
+          let quantity = item.qty + 1;
+          let price = item.price * quantity;
+          return item.id === article.id
+            ? { ...item, price, qty: quantity }
+            : item;
+        })
+      );
+    } else {
+      setItems((prev) => [...prev, article]);
+    }
+  }
+
+  console.log("items", items);
+
   return (
     <SimplifiedDiv style={{}}>
-      <Grid container direction="row" spacing={3}>
+      <Grid container direction='row' spacing={3}>
         {articles.map((article) => {
           return (
             <Grid item md={4} lg={4}>
@@ -83,10 +99,7 @@ const ArticlesHomePage = () => {
                 image={article.image}
                 price={article.price}
                 article={article}
-                onClickButton={(value) => setItems((prev) => [...prev, value])
-                
-                
-                }
+                onClickButton={(value) => addArticleHandler(value)}
               />
             </Grid>
           );
