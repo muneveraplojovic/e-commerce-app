@@ -26,6 +26,9 @@ import AboutScreen from "./Screens/AboutScreen/AboutScreen";
 import ContactScreen from "./Screens/ContactScreen/ContactScreen";
 import CartScreen from "./Screens/CartScreen/CartScreen";
 import CartContextProvider, { CartContext } from "./context/CartContext";
+import UserContextProvider from "./context/UserContext";
+import UserContext from "./context/UserContext";
+import LoginForm from "./components/LoginFrom/LoginForm";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -55,11 +58,27 @@ const App = () => {
     },
   ]);
 
+  const { user, updateUser } = useContext(UserContext);
+
+  const handleLogout = () => {
+    updateUser(null);
+  };
+
   return (
     <>
-      <CartContextProvider>
-        <RouterProvider router={router} />
-      </CartContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>
+          <RouterProvider router={router} />
+          {user ? (
+            <div>
+              <h1>Dobrodošli, {user.name}!</h1>
+              <button onClick={handleLogout}>Odjava</button>
+            </div>
+          ) : (
+            <LoginForm />
+          )}
+        </CartContextProvider>
+      </UserContextProvider>
     </>
   );
 };

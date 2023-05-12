@@ -85,7 +85,7 @@ const CartPage = () => {
 
   return (
     <SimplifiedDiv style={styles.div}>
-      <Grid container direction='row' style={styles.grid}>
+      <Grid container direction="row" style={styles.grid}>
         <Grid item lg={6}>
           Item
         </Grid>
@@ -100,7 +100,7 @@ const CartPage = () => {
         </Grid>
       </Grid>
       {items?.map((item) => (
-        <Grid key={item.id} container direction='row' style={styles.gridWhite}>
+        <Grid key={item.id} container direction="row" style={styles.gridWhite}>
           <Grid item lg={2}>
             <img src={item.image} alt={item.name} style={{ width: "80px" }} />
           </Grid>
@@ -127,7 +127,7 @@ const CartPage = () => {
               -
             </button>
             <input
-              type='number'
+              type="number"
               value={item.qty}
               style={styles.inputStyle}
               onChange={() => {}}
