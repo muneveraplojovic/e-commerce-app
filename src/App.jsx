@@ -66,7 +66,7 @@ const App = () => {
 
   return (
     <>
-      <UserContextProvider>
+      <UserContextProvider value={"Munevera"}>
         <CartContextProvider>
           <RouterProvider router={router} />
           {user ? (
