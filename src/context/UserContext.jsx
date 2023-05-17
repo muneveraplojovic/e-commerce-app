@@ -1,12 +1,12 @@
 import React, { useState, createContext } from "react";
 
 export const UserContext = createContext({
-  user: [],
-  setUser: () => [],
+  user: {},
+  setUser: () => {},
 });
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
 
   const values = {
     user,

@@ -58,25 +58,11 @@ const App = () => {
     },
   ]);
 
-  const { user, updateUser } = useContext(UserContext);
-
-  const handleLogout = () => {
-    updateUser(null);
-  };
-
   return (
     <>
-      <UserContextProvider value={"Munevera"}>
+      <UserContextProvider>
         <CartContextProvider>
           <RouterProvider router={router} />
-          {user ? (
-            <div>
-              <h1>Dobrodošli, {user.name}!</h1>
-              <button onClick={handleLogout}>Odjava</button>
-            </div>
-          ) : (
-            <LoginForm />
-          )}
         </CartContextProvider>
       </UserContextProvider>
     </>
